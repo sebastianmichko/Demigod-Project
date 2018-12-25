@@ -10,13 +10,13 @@ public class MinotaurScene : MonoBehaviour
 	void Start ()
     {
         Player = GameObject.Find("ThirdPersonController");
-        if (Player.GetComponent<ProgressManager>().foughtMinotaur.completed == false)
+        if (Player.GetComponent<ProgressManager>().GetObjectiveFromString("foughtMinotaur").completed == false)
         {
             Player.transform.position = GameObject.Find("MinotaurSceneSpawn").transform.position;
             Player.transform.rotation = GameObject.Find("MinotaurSceneSpawn").transform.rotation;
             border.SetActive(true);
         }
-        else if (Player.GetComponent<ProgressManager>().wakeUpScene.completed == true)//If bed scene has already been done
+        else if (Player.GetComponent<ProgressManager>().GetObjectiveFromString("wakeUpScene").completed == true)//If bed scene has already been done
         {
             gameObject.GetComponent<MinotaurScene>().enabled = false;
             GameObject.Find("Percy").GetComponent<BedScene>().enabled = true;
@@ -28,7 +28,7 @@ public class MinotaurScene : MonoBehaviour
         //If Minotaur is killed
         if (GameObject.Find("Minotaur(Story)") == null)
         {
-            Player.GetComponent<ProgressManager>().foughtMinotaur.completed = true;
+            Player.GetComponent<ProgressManager>().GetObjectiveFromString("foughtMinotaur").completed = true;
             border.SetActive(false);
 
             GameObject.Find("Percy").GetComponent<BedScene>().enabled = true;
