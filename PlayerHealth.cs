@@ -34,6 +34,19 @@ public class PlayerHealth : MonoBehaviour
 
     void Start()
     {
+        if (GameObject.Find("SaveManager"))
+        {
+            curHealth = GameObject.Find("SaveManager").GetComponent<DataController>().gameData.health;
+
+            if (SceneManager.GetActiveScene().buildIndex == GameObject.Find("SaveManager").GetComponent<DataController>().gameData.Scene)
+            {
+                //print("Scenes Matched - Loaded previous player location and rotation.");
+                gameObject.GetComponent<Transform>().position = GameObject.Find("SaveManager").GetComponent<DataController>().gameData.location;
+                gameObject.GetComponent<Transform>().rotation = GameObject.Find("SaveManager").GetComponent<DataController>().gameData.rotation;
+            }
+        }
+
+        //else print("Scenes Did Not Match - Did not load previous player location and rotation.");
         if (autoHeal) InvokeRepeating("healthRegen", 0, 1);//Calls HealthRegen every second
         healthBarScript = gameObject.GetComponent<HealthBarScript>() as HealthBarScript;
         deathMenu = gameObject.GetComponent<DeathMenu>() as DeathMenu;

@@ -37,6 +37,7 @@ public class Cheats : MonoBehaviour
     private void Start()
     {
         spawnRotation.eulerAngles = new Vector3(0, 0, 0);
+        if(GameObject.Find("SaveManager")) cheatsEnabled = GameObject.Find("SaveManager").GetComponent<DataController>().gameData.cheatsEnabled;
     }
 
     void Update ()

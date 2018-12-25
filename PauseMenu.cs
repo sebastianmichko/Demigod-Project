@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 public class PauseMenu : Menu
 {
-    void OnGUI ()
+    public DataController dataController;//Should be private
+
+    void OnGUI()
     {
+        dataController = FindObjectOfType<DataController>();
 
         adjust();
         render();
@@ -56,6 +60,13 @@ public class PauseMenu : Menu
             gameObject.GetComponent<CreditsMenu>().enabled = true;
         }
 
+        //Save Button
+        GUILayout.Space(buttonSpacing);
+        if (GUILayout.Button("Save Game"))
+        {
+            dataController.SaveGameData();
+        }
+
         //Main Menu Button
         //GUILayout.Space(buttonSpacing);
         if (GUILayout.Button("Main Menu"))
@@ -103,4 +114,5 @@ public class PauseMenu : Menu
         GetComponent<PlayerSwordAttack>().meleeBlock = false;
         //print("melee block disabled");
     }
+
 }

@@ -24,14 +24,12 @@ public class ObjectiveMenu : Menu
         //Display objectives.  Render a line through the objectives when they have been completed.
 
         //For loop to display all of the unfinished objetives.
-
-        //GUI.Box(new Rect(0, 0, 360, 40), "3D modeling: Sebastian Michko");
         int j = 0;
-        for (var i = 0; i < progressManager.objectives.Count; ++i)
+        for (var i = 0; i < progressManager.objectivesArray.Length; ++i)
         {
-            if (!progressManager.objectives[i].completed)//Needs to make it do the objectives move up so they don't stay at the bottom.
+            if (!progressManager.objectivesArray[i].completed)//Needs to make it do the objectives move up so they don't stay at the bottom.
             {
-                GUI.Box(new Rect(50, 45 * j, 360, 40), progressManager.objectives[i].description);//Only displays the unfinished ones.
+                GUI.Box(new Rect(50, 45 * j, 360, 40), progressManager.objectivesArray[i].description);//Only displays the unfinished ones.
                 j++;
             }
         }

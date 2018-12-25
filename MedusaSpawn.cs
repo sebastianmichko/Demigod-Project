@@ -29,7 +29,7 @@ public class MedusaSpawn : MonoBehaviour
             extDoor.SetActive(false);
             exitWall.SetActive(false);
             won = true;
-            Player.GetComponent<ProgressManager>().beatMedusa.completed = true;
+            Player.GetComponent<ProgressManager>().GetObjectiveFromString("beatMedusa").completed = true;
             exitTeleport.SetActive(true);
             GetComponent<AudioSource>().Stop();
         }

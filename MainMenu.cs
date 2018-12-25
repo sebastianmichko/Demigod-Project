@@ -2,11 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 public class MainMenu : Menu
 {
-	void OnGUI ()
+
+    public DataController dataController;//Should be private
+
+    void OnGUI ()
     {
+        dataController = FindObjectOfType<DataController>();
+
         adjust();
         render();
 
@@ -17,7 +23,12 @@ public class MainMenu : Menu
         GUILayout.Space(buttonSpacing);
         if (GUILayout.Button("Single Player"))
         {
-            SceneManager.LoadScene(1);
+            //Needs to retrive save data.
+            //LoadGameData();
+
+            //LoadPlayerProgress();
+
+            SceneManager.LoadScene(dataController.gameData.Scene);
         }
 
         //Settings Menu Button
